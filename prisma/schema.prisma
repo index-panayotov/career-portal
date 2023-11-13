@@ -8,7 +8,17 @@ generator client {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  realName  String
+  password  String
+  JobOffers JobOffer[]
+}
+
+model JobOffer {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
